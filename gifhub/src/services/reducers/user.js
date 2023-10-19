@@ -38,6 +38,9 @@ const userSlice = createSlice({
         response: null,
       }
     },
+    updatePosts: (state, action) => {
+      state.posts = action.payload
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -69,5 +72,5 @@ const userSlice = createSlice({
   },
 })
 
-export const { createPost, logOut } = userSlice.actions
+export const { createPost, logOut, updatePosts } = userSlice.actions
 export default userSlice.reducer

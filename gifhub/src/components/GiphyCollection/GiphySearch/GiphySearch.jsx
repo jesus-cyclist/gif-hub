@@ -47,7 +47,6 @@ const GiphySearch = () => {
         getTotalPageCount(response.data.pagination.total_count, limitPage)
       )
       setGiphyList(response.data.data)
-      console.log(response.data.data)
     }
   )
 

@@ -4,14 +4,9 @@ import PostList from '../../components/PostList/PostList'
 import { useSelector } from 'react-redux'
 
 const Home = () => {
-  const [postList, setPostList] = useState(null)
-  const { posts } = useSelector((store) => store.rootReducer.user)
+  const posts = useSelector((store) => store.rootReducer.user.posts)
 
-  useEffect(() => {
-    setPostList(posts)
-  }, [posts])
-
-  return <>{postList && <PostList list={postList} />}</>
+  return <>{posts && <PostList posts={posts} />}</>
 }
 
 export default Home

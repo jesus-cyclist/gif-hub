@@ -57,7 +57,7 @@ const Login = () => {
         <span className={styles.hint}>{hint}</span>
       </form>
 
-      <button
+      {/* <button
         onClick={() =>
           fetch(`${serverUrl}/qwer`, { method: 'POST' })
             .then((res) =>
@@ -80,6 +80,18 @@ const Login = () => {
       >
         /echo
       </button>
+
+      <button
+        onClick={() =>
+          fetch(`${serverUrl}/echo`, { method: 'POST' })
+            .then((res) =>
+              res.ok ? res.json() : Promise.reject(`ERROR =>>${res.status}`)
+            )
+            .then((res) => console.log(res))
+        }
+      >
+        /echo
+      </button> */}
     </div>
   )
 }

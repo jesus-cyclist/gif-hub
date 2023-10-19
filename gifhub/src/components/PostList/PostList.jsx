@@ -8,12 +8,14 @@ import CustomButton from '../UI/CustomButton/CustomButton'
 import styles from './PostList.module.css'
 
 const PostList = (props) => {
-  const { list } = props
+  const { posts } = props
   const location = useLocation()
+
+  console.log(posts)
 
   return (
     <div className={styles.list}>
-      {list.map((item) => (
+      {posts.map((item) => (
         <Post key={uniqid()} postData={item} />
       ))}
       <NavLink

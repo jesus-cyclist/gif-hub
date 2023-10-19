@@ -5,21 +5,31 @@ import { ReactComponent as Check } from '../../../assets/svg/check.svg'
 import { ReactComponent as AddFile } from '../../../assets/svg/file-add.svg'
 import { useFetching } from '../../../hooks/useFetching'
 import serverService from '../../../API/ServerService'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { selectUser } from '../../../services/selectors'
 import { useParams } from 'react-router-dom'
+import { updatePosts } from '../../../services/reducers/user'
 
 const GiphyImage = ({ gif, deleteFromUploadImages, addToUploadImages }) => {
   const [isFileAdd, setIsFileAdd] = useState(false)
   const [isConfirm, setIsConfirm] = useState(false)
 
   const params = useParams()
-
+  const dispatch = useDispatch()
   const user = useSelector(selectUser)
 
   const [fetchGif, isLoading, error] = useFetching(
     async (gif, userId, collectionId) => {
-      await serverService.addGIif(gif, user.userId, params.id.slice(1))
+      await serverService
+        .addGIif(gif, user.userId, params.id.slice(1))
+        // .then((res) => console.log(res))
+        .then((res) => {
+          res.data.success
+            ? dispatch(updatePosts(res.data.response))
+            : console.log(res.data.response)
+
+          console.log(res.data.success, res.data.response)
+        })
     }
   )
 

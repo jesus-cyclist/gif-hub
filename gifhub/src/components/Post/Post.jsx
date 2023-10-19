@@ -8,7 +8,7 @@ import { ReactComponent as ArrowLeft } from '../../assets/svg/arrow-left-o.svg'
 import { ReactComponent as ArrowRight } from '../../assets/svg/arrow-right-o.svg'
 
 const Post = (props) => {
-  const { postData, onClick } = props
+  const { postData } = props
   const { gifs, title, _id } = postData
   const location = useLocation()
   const [indexOfGif, setIndexOfGif] = useState(0)
@@ -22,45 +22,49 @@ const Post = (props) => {
     })
   }
 
+  // console.log(gifs)
+
   return (
     <div className={styles.post}>
-      <div className={styles.gifContainer}>
-        <div className={styles.prevGif}>
-          <CustomButton
-            type={'button'}
-            alignment={'left'}
-            icon={<ArrowLeft width={'50px'} height={'50px'} />}
-            onClick={() => switchGif(-1)}
-            isScalabale={true}
-          />
-        </div>
-        {srcError || !gifs[indexOfGif] ? (
-          <RotatingLines />
-        ) : (
-          <NavLink
-            className={styles.gifLink}
-            to={`${postPath}/:${_id}`}
-            state={{ postDetail: location }}
-          >
-            <img
-              className={styles.gif}
-              src={gifs[indexOfGif].images.original.url}
-              alt={gifs.title}
-              onError={() => setSrcError(true)}
+      {gifs && (
+        <div className={styles.gifContainer}>
+          <div className={styles.prevGif}>
+            <CustomButton
+              type={'button'}
+              alignment={'left'}
+              icon={<ArrowLeft width={'50px'} height={'50px'} />}
+              onClick={() => switchGif(-1)}
+              isScalabale={true}
             />
-          </NavLink>
-        )}
+          </div>
+          {srcError || !gifs[indexOfGif] ? (
+            <RotatingLines />
+          ) : (
+            <NavLink
+              className={styles.gifLink}
+              to={`${postPath}/:${_id}`}
+              state={{ postDetail: location }}
+            >
+              <img
+                className={styles.gif}
+                src={gifs[indexOfGif].images.original.url}
+                alt={gifs[indexOfGif].title}
+                onError={() => setSrcError(true)}
+              />
+            </NavLink>
+          )}
 
-        <div className={styles.nextGif}>
-          <CustomButton
-            type={'button'}
-            alignment={'right'}
-            icon={<ArrowRight width={'50px'} height={'50px'} />}
-            onClick={() => switchGif(1)}
-            isScalabale={true}
-          />
+          <div className={styles.nextGif}>
+            <CustomButton
+              type={'button'}
+              alignment={'right'}
+              icon={<ArrowRight width={'50px'} height={'50px'} />}
+              onClick={() => switchGif(1)}
+              isScalabale={true}
+            />
+          </div>
         </div>
-      </div>
+      )}
       <h2 className={styles.title}>{title}</h2>
     </div>
   )

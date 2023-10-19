@@ -46,41 +46,17 @@ const server = jsonServer.create()
 const router = jsonServer.router('server/db.json')
 const middlewares = jsonServer.defaults()
 
-// Добавляем дефолтных посредников (logger, static, cors и no-cache)
 server.use(middlewares)
-
-// Добавляем кастомные маршруты перед роутером `JSON Server`
-server.get('/echo', (req, res) => {
-  // console.log('echo', req)
-  res.jsonp(req.query)
-})
-
-// Для обработки POST, PUT и PATCH необходимо использовать body-parser
 server.use(jsonServer.bodyParser)
-server.use((req, _, next) => {
-  console.log(req.body, 'echo')
-  if (req.method === 'POST') {
-    req.body.createdAt = Date.now()
-  }
-  // Передаем управление роутеру `JSON Server`
-  next()
+
+server.post('/qwer', (req, res) => {
+  console.log('Received request on /qwer:', req.body)
+  res.jsonp(req.body)
 })
 
-// Добавляем кастомные маршруты перед роутером `JSON Server`
-server.get('/qwer', (req, res) => {
-  // console.log('echo', req)
-  res.jsonp(req.query)
-})
-
-// Для обработки POST, PUT и PATCH необходимо использовать body-parser
-server.use(jsonServer.bodyParser)
-server.use((req, _, next) => {
-  console.log(req.body, 'qwer')
-  if (req.method === 'POST') {
-    req.body.createdAt = Date.now()
-  }
-  // Передаем управление роутеру `JSON Server`
-  next()
+server.post('/echo', (req, res) => {
+  console.log('Received request on /echo:', req.body)
+  res.jsonp(req.body)
 })
 
 server.use(router)

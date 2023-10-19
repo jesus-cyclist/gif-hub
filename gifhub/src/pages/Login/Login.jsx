@@ -28,9 +28,7 @@ const Login = () => {
       return setHint('password')
     }
 
-    fetch(`${serverUrl}/qwer`, { method: 'POST' })
-
-    // dispatch(fetchLogin({ email: values[EMAIL], password: values[PASSWORD] }))
+    dispatch(fetchLogin({ email: values[EMAIL], password: values[PASSWORD] }))
   }
 
   return (
@@ -58,6 +56,30 @@ const Login = () => {
         <CustomButton label={'Log in'} type={'submit'} alignment={'center'} />
         <span className={styles.hint}>{hint}</span>
       </form>
+
+      <button
+        onClick={() =>
+          fetch(`${serverUrl}/qwer`, { method: 'POST' })
+            .then((res) =>
+              res.ok ? res.json() : Promise.reject(`ERROR =>>${res.status}`)
+            )
+            .then((res) => console.log(res))
+        }
+      >
+        /qwer
+      </button>
+
+      <button
+        onClick={() =>
+          fetch(`${serverUrl}/echo`, { method: 'POST' })
+            .then((res) =>
+              res.ok ? res.json() : Promise.reject(`ERROR =>>${res.status}`)
+            )
+            .then((res) => console.log(res))
+        }
+      >
+        /echo
+      </button>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import uniqid from 'uniqid'
 import { ReactComponent as AddSvg } from '../../assets/svg/add.svg'
@@ -6,16 +6,20 @@ import { createCollectionPath } from '../../constants/path'
 import Post from '../Post/Post'
 import CustomButton from '../UI/CustomButton/CustomButton'
 import styles from './PostList.module.css'
+import { useSelector } from 'react-redux'
+import { selectUser } from '../../services/selectors'
 
-const PostList = (props) => {
-  const { posts } = props
+const PostList = () => {
+  const user = useSelector(selectUser)
   const location = useLocation()
 
-  console.log(posts)
+  // useEffect(() => {
+  //   setPosts(user.posts)
+  // }, [user])
 
   return (
     <div className={styles.list}>
-      {posts.map((item) => (
+      {user.posts.map((item) => (
         <Post key={uniqid()} postData={item} />
       ))}
       <NavLink

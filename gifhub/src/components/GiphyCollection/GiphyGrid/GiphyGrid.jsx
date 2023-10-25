@@ -30,7 +30,6 @@ const GiphyGrid = memo(
             />
           ))}
         </div>
-        <CustomButton label />
       </div>
     )
   },

@@ -14,7 +14,7 @@ const Pagination = (props) => {
         <CustomButton
           icon={<Left />}
           onClick={() => changePage(currentPage - 1)}
-          alignment={'right'}
+          alignment={'left'}
         />
       </div>
       {currentPage}/{totalPageCount}
@@ -22,7 +22,7 @@ const Pagination = (props) => {
         <CustomButton
           icon={<Right />}
           onClick={() => changePage(currentPage + 1)}
-          alignment={'left'}
+          alignment={'right'}
         />
       </div>
     </div>

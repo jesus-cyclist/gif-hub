@@ -16,7 +16,7 @@ const PostDetail = () => {
     const id = params.id.slice(1)
     const currentPost = posts.find((item) => item._id === id)
     currentPost && setPost(currentPost)
-  }, [])
+  }, [posts])
 
   const [giphyCollection, setGiphyCollection] = useState(null)
 
@@ -24,7 +24,9 @@ const PostDetail = () => {
     <div className={styles.container}>
       {post ? (
         <div className={styles.collectionContainer}>
-          <Post postData={post} />
+          <div className={styles.postContainer}>
+            <Post postData={post} />
+          </div>
           <GiphySearch />
           {giphyCollection && <GiphyCollection />}
         </div>

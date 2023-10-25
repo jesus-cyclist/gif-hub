@@ -7,11 +7,6 @@ const middlewares = jsonServer.defaults()
 server.use(middlewares)
 server.use(jsonServer.bodyParser)
 
-server.post('/qwer', (req, res) => {
-  console.log('Received request on /qwer:', req.body)
-  res.jsonp(req.body)
-})
-
 server.post('/auth/user', (req, res) => {
   const userLoginData = req.body
   const users = router.db.__wrapped__.users
@@ -28,6 +23,7 @@ server.post('/auth/user', (req, res) => {
   }
 })
 
+//Add GIF
 server.post(
   '/api/users/:userId/collections/:collectionId/images',
   (req, res) => {
@@ -55,8 +51,6 @@ server.post(
       (userGif) => userGif.url === requestGif.url
     )
 
-    console.log(isGifRepeated)
-
     if (isGifRepeated) {
       return res.jsonp({ success: 'false', response: 'The image repeats' })
     }
@@ -69,7 +63,46 @@ server.post(
 
     res.jsonp({
       success: 'true',
-      response: users[userId - 1].collections[collectionIndex].gifs,
+      response: users[userId - 1].collections[collectionIndex],
+    })
+  }
+)
+
+//delete GIF
+server.patch(
+  '/api/users/:userId/collections/:collectionId/images',
+  (req, res) => {
+    const users = router.db.getState().users
+    const userId = req.params.userId.slice(1)
+    const requestCollectionId = req.params.collectionId.slice(1)
+    const requestGif = req.body.gif
+    let modifiedCollection = null
+
+    users.forEach((user) => {
+      if (user.id === parseInt(userId)) {
+        user.collections = user.collections.map((collection) => {
+          if (collection._id === requestCollectionId) {
+            const filtredCollection = collection.gifs.filter((gif) => {
+              return gif.images.original.url !== requestGif.images.original.url
+            })
+
+            modifiedCollection = {
+              ...collection,
+              gifs: [...filtredCollection],
+            }
+
+            return modifiedCollection
+          }
+          return collection
+        })
+      }
+    })
+
+    router.db.setState({ users })
+
+    res.jsonp({
+      success: 'true',
+      response: modifiedCollection,
     })
   }
 )

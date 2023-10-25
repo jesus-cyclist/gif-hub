@@ -25,11 +25,10 @@ export default class serverService {
 
     return response
   }
-  static async test(gif) {
-    const url = `${serverUrl}/qwer`
+  static async deleteGif(gif, userId, collectionId) {
+    const url = `${serverUrl}/api/users/:${userId}/collections/:${collectionId}/images`
 
-    console.log(url)
-    const response = await axios.post(
+    const response = await axios.patch(
       url,
       {
         gif,

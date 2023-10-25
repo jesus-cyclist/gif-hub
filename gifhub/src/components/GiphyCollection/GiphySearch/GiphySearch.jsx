@@ -23,7 +23,7 @@ const options = [
 
 const GiphySearch = () => {
   const [giphyList, setGiphyList] = useState(null)
-  const [searchGifsInput, setSearchGifsInput] = useState('')
+  const [searchGifsInput, setSearchGifsInput] = useState(null)
 
   const {
     currentPage,
@@ -38,10 +38,10 @@ const GiphySearch = () => {
   const [fetchGIFs, isLoading, error] = useFetching(
     async (limit, page, searchRequest, searchType) => {
       const response = await GiphyService.getAll(
-        limitPage,
-        currentPage,
-        searchGifsInput,
-        'trending'
+        limit,
+        page,
+        searchRequest,
+        searchType
       )
       changeTotalPageCount(
         getTotalPageCount(response.data.pagination.total_count, limitPage)
@@ -55,17 +55,21 @@ const GiphySearch = () => {
   }
 
   useEffect(() => {
-    setSearchGifsInput('')
+    fetchGIFs(limitPage, currentPage, searchGifsInput, selectedOptions)
+  }, [currentPage])
+
+  useEffect(() => {
+    setSearchGifsInput(null)
   }, [selectedOptions])
 
-  const handleSearchGifs = () => {
-    fetchGIFs(limitPage, currentPage, searchGifsInput, 'trending')
+  const handleClickSearchGifs = () => {
+    fetchGIFs(limitPage, currentPage, searchGifsInput, selectedOptions)
   }
 
   return (
     <div className={styles.container}>
       <div className={styles.search}>
-        <CustomButton label={'Search'} onClick={handleSearchGifs} />
+        <CustomButton label={'Search'} onClick={handleClickSearchGifs} />
         <CustomSelect
           value={selectedOptions}
           options={options}

@@ -39,7 +39,10 @@ const userSlice = createSlice({
       }
     },
     updatePosts: (state, action) => {
-      state.posts = action.payload
+      const ind = state.posts.findIndex(
+        (post) => post._id === action.payload._id
+      )
+      state.posts[ind] = action.payload
     },
   },
   extraReducers: (builder) => {

@@ -20,16 +20,11 @@ const GiphyImage = ({ gif, deleteFromUploadImages, addToUploadImages }) => {
 
   const [fetchGif, isLoading, error] = useFetching(
     async (gif, userId, collectionId) => {
-      await serverService
-        .addGIif(gif, user.userId, params.id.slice(1))
-        // .then((res) => console.log(res))
-        .then((res) => {
-          res.data.success
-            ? dispatch(updatePosts(res.data.response))
-            : console.log(res.data.response)
-
-          console.log(res.data.success, res.data.response)
-        })
+      await serverService.addGIif(gif, userId, collectionId).then((res) => {
+        JSON.parse(res.data.success)
+          ? dispatch(updatePosts(res.data.response))
+          : console.log(res.data.response)
+      })
     }
   )
 

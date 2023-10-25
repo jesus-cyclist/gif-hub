@@ -13,7 +13,7 @@ const CustomInput = (props) => {
     <div className={styles.inputWrapper}>
       <input
         ref={inputRef}
-        value={values}
+        value={values ? values : ''}
         className={styles.input}
         placeholder={placeholder}
         type={type}

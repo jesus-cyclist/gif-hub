@@ -1,0 +1,14 @@
+.gif-enter {
+  opacity: 0;
+}
+.gif-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+.gif-exit {
+  opacity: 1;
+}
+.gif-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease-in;
+}

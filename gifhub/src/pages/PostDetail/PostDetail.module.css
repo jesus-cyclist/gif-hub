@@ -1,15 +1,8 @@
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .collectionContainer {
-  display: grid;
-  grid-template-rows: 1fr 2fr;
-  grid-gap: 10px;
+  display: flex;
   justify-items: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .giphySearch {
@@ -19,5 +12,4 @@
 .postContainer {
   max-width: 50%;
   width: 50%;
-  height: 100%;
 }

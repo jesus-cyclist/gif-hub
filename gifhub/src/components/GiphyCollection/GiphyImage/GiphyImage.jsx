@@ -9,10 +9,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { selectUser } from '../../../services/selectors'
 import { useParams } from 'react-router-dom'
 import { updatePosts } from '../../../services/reducers/user'
+import { RotatingLines } from 'react-loader-spinner'
 
 const GiphyImage = ({ gif, deleteFromUploadImages, addToUploadImages }) => {
   const [isFileAdd, setIsFileAdd] = useState(false)
   const [isConfirm, setIsConfirm] = useState(false)
+  const [isImageLoading, setIsImageLoading] = useState(true)
 
   const params = useParams()
   const dispatch = useDispatch()
@@ -38,13 +40,31 @@ const GiphyImage = ({ gif, deleteFromUploadImages, addToUploadImages }) => {
     }
   }
 
+  const handleImageLoad = () => {
+    console.log('!')
+    setIsImageLoading(false)
+  }
+
   return (
     <div className={styles.gifWrapper}>
-      <img
-        className={styles.gif}
-        src={gif.images.original.url}
-        alt={gif.title}
-      />
+      {/* {isImageLoading ? (
+        <RotatingLines />
+      ) : (
+        <img
+          className={styles.gif}
+          src={gif.images.original.url}
+          alt={gif.title}
+          onLoad={handleImageLoad}
+        />
+      )} */}
+      {
+        <img
+          className={styles.gif}
+          src={gif.images.original.url}
+          alt={gif.title}
+          onLoad={handleImageLoad}
+        />
+      }
 
       <div
         className={

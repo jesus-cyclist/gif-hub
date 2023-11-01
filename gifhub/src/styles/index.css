@@ -33,8 +33,14 @@ h4 {
   src: url('../assets/fonts/ORIOND.TTF') format('TTF');
 }
 
+html,
 body {
+  height: 100%;
   margin: 0;
+  padding: 0;
+}
+
+body {
   font-family: 'ORION', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

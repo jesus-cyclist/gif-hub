@@ -7,7 +7,6 @@ export const usePagintaion = (initialPage = 1, initialLimit = 10) => {
 
   const changeTotalPageCount = (newTotalPageCount) => {
     setTotalPageCount(newTotalPageCount)
-    setCurrentPage(1)
   }
 
   const changePage = (newPage) => {

@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { createRef } from 'react'
 import styles from './Header.module.css'
 import SwitchTheme from '../UI/SwitchTheme/SwitchTheme'
-import DropDawn from '../UI/DropDawn/DropDawn'
+import DropDawn from '../UI/DropDown/DropDown'
 import { ReactComponent as Profile } from '../../assets/svg/profile.svg'
 import { NavLink } from 'react-router-dom'
 import { homePagePath } from '../../constants/path'
 import { useDispatch } from 'react-redux'
 import { logOut } from '../../services/reducers/user'
+import { ReactComponent as LogOut } from '../../assets/svg/log-out.svg'
+import { ReactComponent as Gear } from '../../assets/svg/gear.svg'
+import uniqid from 'uniqid'
 
 const Header = () => {
   const dispatch = useDispatch()
@@ -15,8 +18,13 @@ const Header = () => {
   }
 
   const profileList = [
-    { title: 'Settings' },
-    { title: 'Log out', onClick: handleLogOut },
+    { title: 'Settings', icon: <Gear />, ref: createRef(null) },
+    {
+      title: 'Log out',
+      onClick: handleLogOut,
+      icon: <LogOut />,
+      ref: createRef(null),
+    },
   ]
 
   return (

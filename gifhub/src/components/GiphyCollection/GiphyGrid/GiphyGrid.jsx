@@ -1,8 +1,8 @@
-import React, { memo, useEffect, useState } from 'react'
+import React, { createRef, memo, useState } from 'react'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import uniqid from 'uniqid'
-import styles from './GiphyGrid.module.css'
 import GiphyImage from '../GiphyImage/GiphyImage'
-import CustomButton from '../../UI/CustomButton/CustomButton'
+import styles from './GiphyGrid.module.css'
 
 const GiphyGrid = memo(
   ({ giphyList }) => {
@@ -19,18 +19,22 @@ const GiphyGrid = memo(
     if (!giphyList) return
 
     return (
-      <div className={styles.container}>
-        <div className={styles.gridGallery}>
-          {giphyList.map((gif) => (
+      <TransitionGroup className={styles.gridGallery}>
+        {giphyList.map((gif) => (
+          <CSSTransition
+            key={gif.title}
+            nodeRef={createRef(null)}
+            timeout={500}
+            classNames={styles.gif}
+          >
             <GiphyImage
-              key={uniqid()}
               gif={gif}
               addToUploadImages={addToUploadImages}
               deleteFromUploadImages={deleteFromUploadImages}
             />
-          ))}
-        </div>
-      </div>
+          </CSSTransition>
+        ))}
+      </TransitionGroup>
     )
   },
   (prevProps, nextProps) =>

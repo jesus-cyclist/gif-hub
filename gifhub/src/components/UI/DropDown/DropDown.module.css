@@ -2,27 +2,24 @@
   position: relative;
 }
 
-.dropDawnButton {
-}
-
-.dropDawnContent {
+.dropDawnMenu {
   position: absolute;
   display: block;
   display: flex;
   justify-content: center;
   align-items: flex-end;
   flex-direction: column;
-  min-width: 200px;
   right: 0;
   top: 40px;
 }
 
 .dropDawnItem {
+  position: relative;
   padding: 10px 15px;
   border: 1px solid #8a8a8a;
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   z-index: 30;
   cursor: pointer;
@@ -34,12 +31,28 @@
 }
 
 .dropDawnItem:first-child {
-  border-radius: 15px 0 0 0;
   border-bottom: none;
 }
 
-.dropDawnItem:last-child {
-  border-radius: 0 0 0 15px;
+.dropDawnItem:first-child::before,
+.dropDawnItem:first-child::after {
+  display: block;
+  content: '';
+  position: absolute;
+  right: 0px;
+
+  border: 10px solid transparent;
+}
+
+.dropDawnItem:first-child::before {
+  top: -21px;
+  border-bottom: 10px solid #8a8a8a;
+}
+
+.dropDawnItem:first-child::after {
+  top: -20px;
+  border-bottom: 10px solid #f0efe9;
+  z-index: 30;
 }
 
 .dropDawnItem:hover {
@@ -49,4 +62,23 @@
 
 .dropDawnItem a {
   color: #333333;
+}
+
+.dropDawnItemText {
+  padding: 5px 10px 5px 15px;
+}
+
+.dropDawnItemEnter {
+  opacity: 0;
+}
+.dropDawnItemEnterActive {
+  opacity: 1;
+  transition: opacity 1500ms ease-in;
+}
+.dropDawnItemExit {
+  opacity: 1;
+}
+.dropDawnItemExitActive {
+  opacity: 0;
+  transition: opacity 1500ms ease-in;
 }

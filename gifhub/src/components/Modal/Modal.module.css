@@ -4,32 +4,29 @@
   bottom: 0;
   right: 0;
   left: 0;
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  min-height: 100%;
 }
 
 .modal {
+  margin: 20px auto 0 auto;
   padding: 10px 10px;
   z-index: 30;
   position: relative;
   border-radius: 30px;
   background: #f0efe9;
   border: 2px solid #9f9f9e;
-  max-width: 90%;
+  max-width: 80%;
 }
 
 @media screen and (min-width: 768px) {
   .modal {
-    max-width: 80%;
+    max-width: 60%;
   }
 }
 
 @media screen and (min-width: 1200px) {
   .modal {
-    max-width: 70%;
+    max-width: 50%;
   }
 }
 

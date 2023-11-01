@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
 import { RotatingLines } from 'react-loader-spinner'
-import styles from './PostDetail.module.css'
-import { useDispatch, useSelector } from 'react-redux'
-import GiphyCollection from '../../components/GiphyCollection/GiphyCollection'
-import Post from '../../components/Post/Post'
+import { useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
 import GiphySearch from '../../components/GiphyCollection/GiphySearch/GiphySearch'
+import Post from '../../components/Post/Post'
+import styles from './PostDetail.module.css'
 
 const PostDetail = () => {
   const params = useParams()
@@ -18,22 +17,27 @@ const PostDetail = () => {
     currentPost && setPost(currentPost)
   }, [posts])
 
+  useEffect(() => {
+    console.log('PostDetail')
+  })
+
   const [giphyCollection, setGiphyCollection] = useState(null)
 
   return (
-    <div className={styles.container}>
+    <>
       {post ? (
         <div className={styles.collectionContainer}>
           <div className={styles.postContainer}>
             <Post postData={post} />
           </div>
-          <GiphySearch />
-          {giphyCollection && <GiphyCollection />}
+          <div className={styles.searchContainer}>
+            <GiphySearch />
+          </div>
         </div>
       ) : (
         <RotatingLines />
       )}
-    </div>
+    </>
   )
 }
 

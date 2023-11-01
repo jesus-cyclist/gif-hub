@@ -1,3 +1,8 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
 .list {
   display: grid;
   grid-template-columns: 1fr;
@@ -22,4 +27,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.post-enter {
+  opacity: 0.01;
+}
+.post-enter-active {
+  opacity: 1;
+  transition: opacity 2s ease-in;
+}
+
+.post-exit {
+  opacity: 1;
+}
+.post-exit-active {
+  opacity: 0.01;
+  transition: opacity 2s ease-in;
 }

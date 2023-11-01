@@ -55,7 +55,12 @@ const GiphySearch = () => {
   }
 
   useEffect(() => {
-    fetchGIFs(limitPage, currentPage, searchGifsInput, selectedOptions)
+    fetchGIFs(
+      limitPage,
+      currentPage * limitPage,
+      searchGifsInput,
+      selectedOptions
+    )
   }, [currentPage])
 
   useEffect(() => {
@@ -63,6 +68,7 @@ const GiphySearch = () => {
   }, [selectedOptions])
 
   const handleClickSearchGifs = () => {
+    changePage(1)
     fetchGIFs(limitPage, currentPage, searchGifsInput, selectedOptions)
   }
 

@@ -1,0 +1,56 @@
+.inputWrapper {
+  position: relative;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.input {
+  width: 100%;
+  border-radius: 2px;
+  font-size: 16px;
+  line-height: 1.6;
+  background-color: transparent;
+  padding-block: 0;
+  padding-left: 10px;
+  color: inherit;
+}
+
+.inputPlaceholder {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  left: 10px;
+  display: inline-block;
+  transition: transform 0.5s ease;
+  cursor: text;
+}
+
+input::placeholder {
+  opacity: 0;
+}
+
+.input:focus ~ .inputPlaceholder {
+  transform: translateY(-35px);
+  transition: transform 0.5s ease;
+  cursor: auto;
+}
+
+.inputPlaceholderActive {
+  transform: translateY(-35px);
+}
+
+.deleteButton {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  transform: scale(0);
+  cursor: pointer;
+  transition: transform 0.5s ease;
+}
+
+.deleteButtonActive {
+  transform: scale(1) rotate(180deg);
+}

@@ -1,0 +1,24 @@
+.container {
+  width: 100%;
+}
+
+.search {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  grid-gap: 5px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.inputWrapper {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease;
+}
+
+.inputWrapperActive {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}

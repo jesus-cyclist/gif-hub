@@ -1,0 +1,30 @@
+.hint {
+  display: block;
+  height: 1rem;
+  text-align: center;
+  opacity: 0;
+  margin-bottom: 10px;
+  line-height: 1;
+}
+
+.hintEnterActive {
+  transform: scaleY(0);
+  transform-origin: top;
+}
+.hintEnterDone {
+  opacity: 1;
+  transform: scaleY(1);
+  transform-origin: top;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.hintExit {
+  opacity: 1;
+  transform: scaleY(1);
+  transform-origin: top;
+}
+.hintExitActive {
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}

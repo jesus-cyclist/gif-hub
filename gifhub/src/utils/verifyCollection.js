@@ -1,1 +1,0 @@
-const verifyCollection = (imagesCollection, imagesToUpload) => {}

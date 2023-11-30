@@ -1,0 +1,106 @@
+.customSelect {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  z-index: 20;
+  width: auto;
+}
+
+.defaultValue {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  padding: 0 10px;
+  background-color: transparent;
+  border-radius: 2px;
+}
+
+.angleDropDown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(-180deg);
+  transition: transform 0.3s ease;
+  margin-left: 30px;
+}
+
+.angleDropDownActive {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0deg);
+  transition: transform 0.3s ease;
+  margin-left: 30px;
+}
+
+.selectList {
+  position: absolute;
+  list-style: none;
+  left: 0;
+  top: 130%;
+  padding-inline-start: 0px;
+  margin-top: 0;
+  padding: 0;
+  width: 100%;
+  max-height: max-content;
+  overflow-y: auto;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.5s ease;
+}
+
+.selectList::-webkit-scrollbar {
+  display: none;
+}
+
+.entering {
+  transform: scaleY(1);
+}
+
+.entered {
+  transform: scaleY(1);
+}
+
+.selectItem {
+  cursor: pointer;
+  overflow: hidden;
+  display: block;
+}
+
+.selectItem:first-child {
+  border-radius: 2px 2px 0 0;
+}
+
+.selectItem:last-child {
+  border-radius: 0 0 2px 2px;
+}
+
+.selectItem:hover {
+  background-color: #d8d7cf;
+  transition: all 0.9s ease;
+}
+
+.selectText {
+  padding: 0px 10px;
+  display: block;
+  width: 100%;
+  transform: translateX(20px);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0.5;
+}
+
+.entering .selectText {
+  transform: translateX(0px);
+  opacity: 1;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.entered .selectText {
+  opacity: 1;
+  transform: translateX(0px);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}

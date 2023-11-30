@@ -1,0 +1,152 @@
+.post {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 2px;
+  -webkit-box-shadow: 1px 1px 5px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 1px 1px 5px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 1px 1px 5px 0px rgba(34, 60, 80, 0.2);
+  z-index: 10;
+  transition: transform 0.5s ease-in-out, -webkit-box-shadow 0.5s ease-in-out,
+    -moz-box-shadow 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+  overflow: hidden;
+  height: 100%;
+}
+
+.post:hover {
+  transform: scale(1.01);
+  transition: transform 0.5s ease-in-out, -webkit-box-shadow 0.5s ease-in-out,
+    -moz-box-shadow 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+  -webkit-box-shadow: 8px 5px 10px 6px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 8px 5px 10px 6px rgba(34, 60, 80, 0.2);
+  box-shadow: 8px 5px 10px 6px rgba(34, 60, 80, 0.2);
+}
+
+.gifContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.gifLink,
+.gif {
+  height: 100%;
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+
+.prevGif,
+.nextGif {
+  position: absolute;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.prevGif {
+  top: 50%;
+  transform: translate(0, -50%);
+  left: 5px;
+}
+
+.nextGif {
+  right: 5px;
+  top: 50%;
+  transform: translate(0, -50%);
+  border-radius: 50%;
+}
+
+.controlPanel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30%;
+  height: 30%;
+  min-width: 150px;
+  min-height: 150px;
+  border-radius: 50%;
+  transform: translate(50%, -50%) scale(0);
+  transition: transform 0.5s ease;
+}
+
+.deletePost {
+  position: absolute;
+  top: calc(60% + 20px);
+  left: 40%;
+  transform: translate(-50%, -50%);
+}
+
+.fullScreen {
+  position: absolute;
+  top: 60%;
+  left: calc(40% - 20px);
+  transform: translate(-50%, -50%);
+}
+
+.deletePost,
+.fullScreen {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.controlPanel:hover .deletePost,
+.controlPanel:hover .fullScreen {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.post:hover .prevGif,
+.post:hover .nextGif {
+  opacity: 0.5;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.post:hover .controlPanel {
+  transform: translate(50%, -50%) scale(0.6);
+  transition: transform 0.5s ease;
+}
+
+.post:hover .prevGif:hover,
+.post:hover .nextGif:hover {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.post:hover .controlPanel:hover {
+  transform: translate(50%, -50%) scale(1.2);
+  transition: transform 0.5s ease;
+}
+
+.entering {
+  opacity: 0;
+  transform: scale(0.8);
+}
+.entered {
+  opacity: 1;
+  transform: scale(1);
+}
+.exiting {
+  opacity: 1;
+  transform: scale(1);
+}
+.exited {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.postHeader {
+  width: 100%;
+  padding: 5px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hashtagsContainer {
+  width: 100%;
+  padding: 5px 10px;
+}

@@ -1,0 +1,56 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.wrapper svg {
+  cursor: pointer;
+}
+
+.buttonIcon {
+  border: 1px solid #111;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+}
+
+.buttonIcon svg {
+  opacity: 0.5;
+  transition: opacity 0.5s ease-in-out;
+  z-index: 10;
+}
+
+.buttonIcon svg:hover {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.buttonLabel {
+  color: inherit;
+  border-radius: 2px;
+}
+
+.center {
+  justify-content: center;
+}
+
+.left {
+  justify-content: start;
+}
+
+.right {
+  justify-content: end;
+}
+
+.buttonLabel {
+  border: 1px solid #111;
+  height: 100%;
+  display: block;
+  cursor: pointer;
+  background-color: transparent;
+}

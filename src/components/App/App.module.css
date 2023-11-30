@@ -1,0 +1,37 @@
+:root {
+  --light-text-color: #d6d6d6;
+  --dark-text-color: #101010;
+  --light-border-color: 1px solid #d6d6d6;
+  --dark-border-color: 1px solid #101010;
+  --light-background-color: #e4e3dc;
+  --dark-background-color: #202124;
+  --light-background-color-hover: #dbdad3;
+  --dark-background-color-hover: #292a2e;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  flex-grow: 1;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.app {
+  margin: 0 auto;
+  max-width: 680px;
+  width: 100%;
+  padding: 0 15px;
+}
+
+@media screen and (min-width: 768px) {
+  .app {
+    max-width: 960px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .app {
+    max-width: 1320px;
+  }
+}

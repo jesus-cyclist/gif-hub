@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: minmax(400px, auto);
+  grid-gap: 15px;
+}
+
+@media screen and (min-width: 768px) {
+  .list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .list {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.postEnter {
+  opacity: 0;
+}
+.postEnterActive {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+.postExit {
+  opacity: 1;
+}
+.postExitActive {
+  opacity: 0;
+  transition: opacity 500ms ease-in;
+}
+
+.createNewPostButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

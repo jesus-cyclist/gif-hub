@@ -1,0 +1,172 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.hashPanel {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.hashtag {
+  position: relative;
+  display: block;
+  margin: 0 10px 10px 0;
+  padding: 0 10px;
+  background: transparent;
+  transition: -webkit-box-shadow 0.5s ease-in-out,
+    -moz-box-shadow 0.5s ease-in-out, box-shadow 0.5s ease-in-out,
+    background-color 0.5s ease-in-out, border-radius 0.5s ease;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.hashtag:hover,
+.enteringHashtag,
+.enteredHashtag {
+  background-color: #dad8d1;
+  transition: -webkit-box-shadow 0.5s ease-in-out,
+    -moz-box-shadow 0.5s ease-in-out, box-shadow 0.5s ease-in-out,
+    background-color 0.5s ease-in-out;
+  -webkit-box-shadow: 4px 2px 5px 3px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 4px 2px 5px 3px rgba(34, 60, 80, 0.2);
+  box-shadow: 4px 2px 5px 3px rgba(34, 60, 80, 0.2);
+}
+
+.deleteHashtag {
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0;
+  transform: translate(50%, -50%) scale(0.8);
+  display: flex;
+  color: #333333;
+  transition: transform 0.5s ease, opacity 0.5s ease, color 0.5s ease;
+}
+
+.hashtag:hover .deleteHashtag {
+  opacity: 1;
+  transform: translate(50%, -50%) rotate(45deg) scale(1);
+}
+
+.hashtag:hover .deleteHashtag:hover {
+  color: rgb(182, 33, 33);
+  transform: translate(50%, -50%) rotate(45deg) scale(1.2);
+}
+
+.addHashtag {
+  margin: 0 10px 10px 0;
+  max-width: 200px;
+  display: flex;
+  gap: 10px;
+}
+
+.addHashtagButton,
+.confirmHashtagButton {
+  cursor: pointer;
+}
+
+.inputWrapper input {
+  border: none;
+  outline: none;
+  height: 100%;
+  text-overflow: ellipsis;
+  background: none;
+  top: 0;
+  left: 0;
+  padding: inherit;
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.inputWrapper {
+  border-bottom: 1px solid #aeaeae;
+  position: relative;
+  box-sizing: border-box;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: inline-block;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.enteringInputWrapper {
+  transform: scaleX(1);
+  transition: transform 0.3s ease;
+}
+
+.enteredInputWrapper {
+  transform: scaleX(1);
+  transition: transform 0.3s ease;
+}
+
+.hashTagText {
+  white-space: pre;
+  display: inline-block;
+  box-sizing: border-box;
+  position: relative;
+  opacity: 0;
+  min-width: 2px;
+  vertical-align: top;
+  width: 100%;
+}
+
+.enteringInputWrapper .hashTagText {
+  min-width: 20px;
+  transition: min-width 0.3s ease;
+}
+
+.enteredInputWrapper .hashTagText {
+  min-width: 20px;
+  transition: min-width 0.3s ease;
+}
+
+.exitingInputWrapper {
+  min-width: 20px;
+  transition: min-width0.3s ease;
+}
+
+.exitedInputWrapper {
+  min-width: 2px;
+  transition: min-width 0.3s ease;
+}
+
+.addButtonWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0deg);
+  transition: transform 0.3s ease;
+}
+
+.enteringAddButtonWrapper {
+  transform: rotate(-45deg);
+  transition: transform 0.3s ease;
+}
+.enteredAddButtonWrapper {
+  transform: rotate(-45deg);
+}
+
+.confirmButtonWrapper {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.enteringConfirmButtonWrapper {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+.enteredConfirmButtonWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}

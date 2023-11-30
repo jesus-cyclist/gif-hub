@@ -1,0 +1,54 @@
+.container {
+  margin-bottom: 10px;
+}
+
+.filterControls {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.select,
+.input {
+  flex: 1 1 100%;
+  min-width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .filterControls {
+    flex-direction: initial;
+  }
+  .select,
+  .input {
+    flex: 0 0 30%;
+    min-width: auto;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .app {
+    max-width: 1320px;
+  }
+}
+
+.filterTags {
+  display: flex;
+}
+
+.tag {
+  border: 1px solid rgb(174, 174, 174);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5px;
+  margin-right: 5px;
+}
+
+.deleteTagButton {
+  display: flex;
+  margin-left: 5px;
+  transform: rotate(45deg);
+  cursor: pointer;
+}

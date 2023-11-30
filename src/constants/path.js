@@ -1,0 +1,6 @@
+export const loginPagePath = '/login'
+export const homePagePath = '/'
+export const postPath = '/post'
+export const createPostPath = '/create-post'
+export const settingsPath = '/settings'
+export const profileDataPath = 'profile-data'

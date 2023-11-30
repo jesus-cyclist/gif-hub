@@ -1,0 +1,22 @@
+.postContainer {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.giphySearch {
+  padding: 20px 0;
+}
+
+.postInfo,
+.postChange {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: start;
+}
+
+.postChange {
+  margin-bottom: 10px;
+}

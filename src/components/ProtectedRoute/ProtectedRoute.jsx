@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Navigate, useLocation } from 'react-router-dom'
-import { loginPagePath } from '../../constants/path'
+import { loginPagePath } from '@constants/path'
 
 const ProtectedRoute = ({ component, isAuthOnly = true }) => {
   const { isAuth } = useSelector((store) => store.rootReducer.user)

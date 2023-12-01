@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { CSSTransition } from 'react-transition-group'
-import { getClassNamesForReactTransition } from '../../../utils/getClassNamesForTransition'
+import { getClassNamesForReactTransition } from '@utils/getClassNamesForTransition'
 import styles from './Hint.module.css'
 
 const Hint = ({ hintValue = '', setHintValue }) => {

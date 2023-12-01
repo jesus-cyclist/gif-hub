@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { RotatingLines } from 'react-loader-spinner'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import GiphySearch from '../../components/GiphyCollection/GiphySearch/GiphySearch'
-import HashPanel from '../../components/UI/HashPanel/HashPanel'
-import FormattedDate from '../../components/UI/FormattedDate/FormattedDate'
-import GifSlider from '../../components/UI/GifSlider/GifSlider'
+import GiphySearch from '@components/GiphySearch/GiphySearch'
+import HashPanel from '@components/UI/HashPanel/HashPanel'
+import FormattedDate from '@components/UI/FormattedDate/FormattedDate'
+import GifSlider from '@components/UI/GifSlider/GifSlider'
 import styles from './PostDetail.module.css'
-import { deleteFilterTag } from '../../services/reducers/filterTags'
+import { deleteFilterTag } from '@services/reducers/filterTags'
 
 const PostDetail = () => {
   const params = useParams()

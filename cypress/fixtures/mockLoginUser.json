@@ -1,0 +1,90 @@
+{
+  "response": {
+    "id": 1,
+    "name": "xui",
+    "email": "xui@mail.ru",
+    "password": "qwerty",
+    "posts": [
+      {
+        "_id": "00ab6c6a-b7ab-4537-8e05-2dc8120db8d6",
+        "title": "Pervaya",
+        "createdAt": "2022-11-09T12:10:14.298Z",
+        "changedIn": "2023-11-09T12:10:14.298Z",
+        "hashtags": ["homer", "lorem"],
+        "gifs": [
+          {
+            "title": "Homer",
+            "images": {
+              "original": {
+                "url": "https://user-images.githubusercontent.com/14011726/94132137-7d4fc100-fe7c-11ea-8512-69f90cb65e48.gif"
+              }
+            }
+          },
+
+          {
+            "title": "Cat",
+            "images": {
+              "original": {
+                "url": "https://upload.wikimedia.org/wikipedia/ru/6/6b/NyanCat.gif"
+              }
+            }
+          },
+
+          {
+            "title": "Scala",
+            "images": {
+              "original": {
+                "url": "https://media.tenor.com/M0YyxTY9gB0AAAAd/%D1%81%D0%BA%D0%B0%D0%BB%D0%B0.gif"
+              }
+            }
+          }
+        ]
+      },
+
+      {
+        "_id": "6cb85ba9-fd0d-4f9e-aa54-060c999415a8",
+        "createdAt": "2021-11-09T12:10:14.298Z",
+        "changedIn": "2023-11-09T12:10:14.298Z",
+        "title": "Vtoraya",
+        "hashtags": ["homer"],
+        "gifs": [
+          {
+            "title": "Homer",
+            "images": {
+              "original": {
+                "url": "https://user-images.githubusercontent.com/14011726/94132137-7d4fc100-fe7c-11ea-8512-69f90cb65e48.gif"
+              }
+            }
+          },
+
+          {
+            "title": "Cat",
+            "images": {
+              "original": {
+                "url": "https://upload.wikimedia.org/wikipedia/ru/6/6b/NyanCat.gif"
+              }
+            }
+          },
+
+          {
+            "title": "Scala",
+            "images": {
+              "original": {
+                "url": "https://media.tenor.com/M0YyxTY9gB0AAAAd/%D1%81%D0%BA%D0%B0%D0%BB%D0%B0.gif"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "_id": "200cf232-54e8-49d2-aca5-e53a9455ce7b",
+        "title": "Tretya",
+        "createdAt": "2020-11-09T12:10:14.298Z",
+        "changedIn": "2023-11-09T12:10:14.298Z",
+        "hashtags": [],
+        "gifs": []
+      }
+    ]
+  },
+  "success": true
+}

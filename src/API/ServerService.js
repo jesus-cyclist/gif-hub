@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { serverUrl } from '../constants/url'
+import { serverUrl } from '@constants/url'
 
 export default class serverService {
   static async addGif(gif, userId, postId) {
@@ -146,7 +146,31 @@ export default class serverService {
         },
       }
     )
-    console.log(response)
+
+    return response
+  }
+
+  static async register(form) {
+    const url = `${serverUrl}/api/register`
+
+    const formData = new FormData(form)
+    const formObject = {}
+    formData.forEach((value, key) => {
+      formObject[key] = value
+    })
+
+    const response = await axios.post(
+      url,
+      {
+        formObject,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    )
+
     return response
   }
 }

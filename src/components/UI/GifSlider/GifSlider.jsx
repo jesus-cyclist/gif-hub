@@ -6,12 +6,12 @@ import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
 import { Keyboard, Navigation, Pagination, Scrollbar } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import serverService from '../../../API/ServerService'
-import { ReactComponent as Delete } from '../../../assets/svg/trash.svg'
-import { ReactComponent as Copy } from '../../../assets/svg/copied-icon.svg'
-import { useFetching } from '../../../hooks/useFetching'
-import { updatePost } from '../../../services/reducers/user'
-import { selectUser } from '../../../services/selectors'
+import serverService from '@api/ServerService'
+import { ReactComponent as Copy } from '@assets/svg/copied-icon.svg'
+import { ReactComponent as Delete } from '@assets/svg/trash.svg'
+import { useFetching } from '@hooks/useFetching'
+import { updatePost } from '@services/reducers/user'
+import { selectUser } from '@services/selectors'
 import './GifSlider.css'
 import styles from './GifSlider.module.css'
 
@@ -22,11 +22,11 @@ const GifSlider = ({ post }) => {
   const [fetchDeleteGif] = useFetching(async (gif, userId, postId) => {
     await serverService
       .deleteGif(gif, userId, postId)
-      .then((res) => dispatch(updatePost(res)))
+      .then((res) => dispatch(updatePost(res.data.response)))
   })
 
   const handleDeleteGif = (event, gif) => {
-    fetchDeleteGif(gif, user.userId, _id)
+    fetchDeleteGif(gif, user.userData.id, _id)
   }
 
   return (

@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import PostFilter from '../../components/PostList/PostFilter/PostFilter'
-import PostList from '../../components/PostList/PostList'
-import { NameAZ, NameZA, Newest, Oldest } from '../../constants/sort'
-import { useSortedAndSearchedPosts } from '../../hooks/useSortedAndSearchedPosts'
-import { selectFilterTags, selectUser } from '../../services/selectors'
-import { deleteFilterTag } from '../../services/reducers/filterTags'
+import PostFilter from '@components/PostList/PostFilter/PostFilter'
+import PostList from '@components/PostList/PostList'
+import { NameAZ, NameZA, Newest, Oldest } from '@constants/sort'
+import { useSortedAndSearchedPosts } from '@hooks/useSortedAndSearchedPosts'
+import { selectFilterTags, selectUser } from '@services/selectors'
+import { deleteFilterTag } from '@services/reducers/filterTags'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 
 const filterSelect = [NameAZ, NameZA, Newest, Oldest]
 
@@ -46,7 +48,9 @@ const Home = () => {
         setFilter={setFilter}
         clickOnFilterTag={handleDeleteFilerTag}
       />
-      <PostList posts={sortedAndSearchedPosts} />
+      <DndProvider backend={HTML5Backend}>
+        <PostList posts={sortedAndSearchedPosts} />
+      </DndProvider>
     </>
   )
 }

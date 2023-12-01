@@ -1,6 +1,6 @@
 import React from 'react'
-import { ReactComponent as Left } from '../../../assets/svg/chevron-left.svg'
-import { ReactComponent as Right } from '../../../assets/svg/chevron-right.svg'
+import { ReactComponent as Left } from '@assets/svg/chevron-left.svg'
+import { ReactComponent as Right } from '@assets/svg/chevron-right.svg'
 import CustomButton from '../CustomButton/CustomButton'
 import styles from './Pagination.module.css'
 

@@ -4,11 +4,6 @@ const initialState = {
   userData: null,
   isAuth: false,
   posts: [],
-  loginStatus: {
-    isLoading: false,
-    isRejected: false,
-    response: null,
-  },
 }
 
 const userSlice = createSlice({
@@ -19,62 +14,38 @@ const userSlice = createSlice({
       state.userData = null
       state.isAuth = false
       state.posts = []
-      state.loginStatus = {
-        isLoading: false,
-        isRejected: false,
-        response: null,
-      }
     },
+    logIn: (state, action) => {
+      const { email, id, name, password, posts } = action.payload
+      state.userData = {
+        email,
+        id,
+        name,
+        password,
+      }
+      state.isAuth = true
+      state.posts = posts
+    },
+
     updatePost: (state, action) => {
       state.posts = [
         ...state.posts.map((post) => {
-          if (post._id === action.payload.data.response._id) {
-            return action.payload.data.response
+          if (post._id === action.payload._id) {
+            return action.payload
           }
           return post
         }),
       ]
     },
     addNewPost: (state, action) => {
-      state.posts = [...state.posts, action.payload.data.response]
+      state.posts = [...state.posts, action.payload]
     },
     deletePost: (state, action) => {
-      state.posts = action.payload.data.response
+      state.posts = action.payload
     },
   },
-  // extraReducers: (builder) => {
-  //   builder
-  //     .addCase(fetchLogin.pending, (state) => {
-  //       state.loginStatus = {
-  //         isLoading: true,
-  //         isRejected: false,
-  //         response: null,
-  //       }
-  //     })
-  //     .addCase(fetchLogin.rejected, (state) => {
-  //       state.loginStatus = {
-  //         isLoading: false,
-  //         isRejected: true,
-  //       }
-  //     })
-  //     .addCase(fetchLogin.fulfilled, (state, action) => {
-  //       const { posts, name, id, password, email } = action.payload
-  //       state.userData = {
-  //         password,
-  //         email,
-  //         name,
-  //         userId: id,
-  //       }
-  //       state.isAuth = true
-  //       state.posts = posts
-  //       state.loginStatus = {
-  //         isLoading: false,
-  //         isRejected: false,
-  //         response: action.payload,
-  //       }
-  //     })
-  // },
 })
 
-export const { logOut, updatePost, addNewPost, deletePost } = userSlice.actions
+export const { logOut, updatePost, addNewPost, deletePost, logIn, dropPosts } =
+  userSlice.actions
 export default userSlice.reducer

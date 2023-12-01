@@ -3,12 +3,12 @@ import { createPortal } from 'react-dom'
 import { useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Transition } from 'react-transition-group'
-import { selectTheme } from '../../services/selectors'
+import { selectTheme } from '@services/selectors'
 import {
   getBackgroundColorClass,
   getBorderClass,
   getColorClass,
-} from '../../utils/theme'
+} from '@utils/theme'
 import styles from './Modal.module.css'
 import ModalOverlay from './ModalOverlay/ModalOverlay'
 

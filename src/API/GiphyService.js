@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { giphyApiKey, giphyPath } from '../constants/url'
+import { giphyApiKey, giphyPath } from '@constants/url'
 
 export default class GiphyService {
   static async getAll(limit = 6, offset = 1, q = null, type = 'trending') {

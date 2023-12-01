@@ -26,11 +26,39 @@ server.post('/api/login', (req, res) => {
       user.password === userLoginData.password
   )
   if (isUserValid) {
-    res.json({ success: true, response: isUserValid })
+    res.jsonp({ success: true, response: isUserValid })
   } else {
-    res.json({
+    res.jsonp({
       success: false,
       response: 'The user with this password was not found',
+    })
+  }
+})
+
+//register
+server.post('/api/register', (req, res) => {
+  const userLoginData = req.body.formObject
+  const users = router.db.__wrapped__.users
+
+  const isUserValid = users.find((user) => user.email === userLoginData.email)
+  if (isUserValid) {
+    res.jsonp({
+      success: false,
+      response: 'The user with this email already exists',
+    })
+  } else {
+    const newUser = {
+      id: uuidv4(),
+      name: userLoginData.name,
+      email: userLoginData.email,
+      password: userLoginData.password,
+      posts: [],
+    }
+    users.push(newUser)
+
+    res.jsonp({
+      success: true,
+      response: newUser,
     })
   }
 })
@@ -41,40 +69,23 @@ server.post('/api/users/:userId/posts/:postId/gifs', (req, res) => {
   const userId = req.params.userId.slice(1)
   const requestPostId = req.params.postId.slice(1)
   const requestGif = req.body.gif
+  let modifiedPost = {}
 
-  const postIndex = users[userId - 1].posts.findIndex(
-    (userPost) => userPost._id === requestPostId
-  )
-
-  if (postIndex === -1) {
-    return res.jsonp({
-      success: 'false',
-      response: 'No posts with this id were found',
-    })
-  }
-
-  const userPost = users[userId - 1].posts.find(
-    (userPost) => userPost._id === requestPostId
-  ).gifs
-
-  const isGifRepeated = userPost.some(
-    (userGif) => userGif.url === requestGif.url
-  )
-
-  if (isGifRepeated) {
-    return res.jsonp({ success: 'false', response: 'The image repeats' })
-  }
-
-  users[userId - 1].posts[postIndex].gifs = [...userPost, requestGif]
-  users[userId - 1].posts[postIndex].changedIn = getCurrentDate()
-
-  router.db.setState({ users })
-
-  console.log(users[userId - 1].posts[postIndex])
+  users.forEach((user) => {
+    if (user.id === userId) {
+      user.posts = user.posts.map((post) => {
+        if (post._id === requestPostId) {
+          modifiedPost = { ...post, gifs: [...post.gifs, requestGif] }
+          return modifiedPost
+        }
+        return post
+      })
+    }
+  })
 
   res.jsonp({
     success: true,
-    response: users[userId - 1].posts[postIndex],
+    response: modifiedPost,
   })
 })
 
@@ -87,7 +98,7 @@ server.patch('/api/users/:userId/posts/:postId/gifs', (req, res) => {
   let modifiedPost = null
 
   users.forEach((user) => {
-    if (user.id === parseInt(userId)) {
+    if (user.id === userId) {
       user.posts = user.posts.map((post) => {
         if (post._id === requestPostId) {
           const filtredPost = post.gifs.filter((gif) => {
@@ -124,7 +135,7 @@ server.post('/api/users/:userId/posts/:postId/hashtags', (req, res) => {
   let modifiedPost = null
 
   users.forEach((user) => {
-    if (user.id === parseInt(userId)) {
+    if (user.id === userId) {
       user.posts = user.posts.map((post) => {
         if (post._id === requestPostId) {
           modifiedPost = {
@@ -157,7 +168,7 @@ server.patch('/api/users/:userId/posts/:postId/hashtags', (req, res) => {
   let modifiedPost = null
 
   users.forEach((user) => {
-    if (user.id === parseInt(userId)) {
+    if (user.id === userId) {
       user.posts = user.posts.map((post) => {
         if (post._id === requestPostId) {
           const filtredHashtags = post.hashtags.filter(
@@ -194,7 +205,7 @@ server.get('/api/users/:userId/posts/:postId', (req, res) => {
   let filtredPosts = null
 
   users.forEach((user) => {
-    if (user.id === parseInt(userId)) {
+    if (user.id === userId) {
       filtredPosts = [...user.posts].filter(
         (post) => post._id !== requestPostId
       )
@@ -218,7 +229,7 @@ server.post('/api/users/:userId/posts/add', (req, res) => {
   let newPost = null
 
   users.forEach((user) => {
-    if (user.id === parseInt(userId)) {
+    if (user.id === userId) {
       newPost = {
         _id: uuidv4(),
         title: requestPostName,
@@ -227,6 +238,7 @@ server.post('/api/users/:userId/posts/add', (req, res) => {
         hashtags: [],
         gifs: [],
       }
+
       user.posts = [...user.posts, newPost]
     }
   })
@@ -248,7 +260,7 @@ server.post('/api/users/:userId/auth', (req, res) => {
   let isUserModifiedSuccesfull = false
 
   users.forEach((user, index) => {
-    if (user.id === parseInt(userId)) {
+    if (user.id === userId) {
       users[index] = { ...user, name, email, password }
       isUserModifiedSuccesfull = true
     }

@@ -20,7 +20,7 @@ const GiphyGrid = memo(
       <div className={styles.container}>
         {giphyList.map((gif) => (
           <GiphyImage
-            key={gif.title}
+            key={gif.id}
             gif={gif}
             addToUploadImages={addToUploadImages}
             deleteFromUploadImages={deleteFromUploadImages}

@@ -1,19 +1,15 @@
+import serverService from '@api/ServerService'
+import { ReactComponent as Check } from '@assets/svg/checkAddHashtag.svg'
+import { ReactComponent as PlusDelete } from '@assets/svg/plus.svg'
+import { useFetching } from '@hooks/useFetching'
+import { updatePost } from '@services/reducers/user'
+import { selectFilterTags, selectTheme, selectUser } from '@services/selectors'
+import { getBorderClass } from '@utils/theme'
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Transition } from 'react-transition-group'
-import serverService from '../../../API/ServerService'
-import { ReactComponent as Check } from '../../../assets/svg/checkAddHashtag.svg'
-import { ReactComponent as PlusDelete } from '../../../assets/svg/plus.svg'
-import { useFetching } from '../../../hooks/useFetching'
-import { updatePost } from '../../../services/reducers/user'
-import {
-  selectFilterTags,
-  selectTheme,
-  selectUser,
-} from '../../../services/selectors'
-import { getBorderClass } from '../../../utils/theme'
-import styles from './HashPanel.module.css'
 import Hint from '../Hint/Hint'
+import styles from './HashPanel.module.css'
 
 const HashPanel = ({
   hashtags = [],
@@ -39,12 +35,12 @@ const HashPanel = ({
   const [fetchAddHashtag] = useFetching(async (value, userId, postId) => {
     await serverService
       .addHashtag(value, userId, postId)
-      .then((res) => dispatch(updatePost(res)))
+      .then((res) => dispatch(updatePost(res.data.response)))
   })
   const [fetchDeleteHashtag] = useFetching(async (value, userId, postId) => {
     await serverService
       .deleteHashtag(value, userId, postId)
-      .then((res) => dispatch(updatePost(res)))
+      .then((res) => dispatch(updatePost(res.data.response)))
   })
 
   useEffect(() => {
@@ -79,7 +75,7 @@ const HashPanel = ({
       return
     }
 
-    fetchAddHashtag(inputHashValue, user.userId, id)
+    fetchAddHashtag(inputHashValue, user.userData.id, id)
     setHintValue('Hashtag successfully added')
     setInputHashValue('')
     setInputTextPlaceholder('')
@@ -87,7 +83,7 @@ const HashPanel = ({
   }
 
   const handleDeleteHashtag = (e, hashtag) => {
-    fetchDeleteHashtag(hashtag, user.userId, id)
+    fetchDeleteHashtag(hashtag, user.userData.id, id)
     clickOnDeleteTag(hashtag)
   }
 
@@ -113,7 +109,12 @@ const HashPanel = ({
                     border: `${getBorderClass(isDarkModeActive)}`,
                   }}
                 >
-                  <span onClick={() => clickOnTag(hashtag)}>{hashtag}</span>
+                  <span
+                    onClick={() => clickOnTag(hashtag)}
+                    data-test-id={'hashtag'}
+                  >
+                    {hashtag}
+                  </span>
                   <div
                     className={styles.deleteHashtag}
                     onClick={(e) => handleDeleteHashtag(e, hashtag)}

@@ -1,12 +1,13 @@
 import React from 'react'
 import styles from './CustomButton.module.css'
 import { useSelector } from 'react-redux'
-import { selectTheme } from '../../../services/selectors'
-import { getBorderClass } from '../../../utils/theme'
+import { selectTheme } from '@services/selectors'
+import { getBorderClass } from '@utils/theme'
 
 const CustomButtonSvg = (props) => {
   const isDarkModeActive = useSelector(selectTheme)
-  const { onClick, type, label, icon, alignment, extraClass } = props
+  const { onClick, type, label, icon, alignment, extraClass, dataTestId } =
+    props
   const combinedStyles = { ...extraClass }
 
   return (
@@ -16,6 +17,7 @@ const CustomButtonSvg = (props) => {
           className={`${styles.buttonIcon} ${combinedStyles}`}
           style={extraClass}
           onClick={onClick}
+          data-test-id={dataTestId}
         >
           {icon}
         </button>
@@ -25,6 +27,7 @@ const CustomButtonSvg = (props) => {
           className={`${styles.buttonLabel} ${combinedStyles}`}
           onClick={onClick}
           style={{ border: getBorderClass(isDarkModeActive) }}
+          data-test-id={dataTestId}
         >
           {label}
         </button>

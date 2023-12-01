@@ -5,7 +5,7 @@ export const useFiltredByTags = (tags, posts) => {
   const filtredPosts = useMemo(() => {
     if (!!tags.length) {
       return [...posts].filter((post) =>
-        post.hashtags.some((tag) => tags.includes(tag))
+        tags.every((tag) => post.hashtags.includes(tag))
       )
     }
     return posts
@@ -44,7 +44,7 @@ export const useSortedPosts = (sort, posts, tags) => {
 
 export const useSortedAndSearchedPosts = (sort, query, tags, posts) => {
   const sortedPosts = useSortedPosts(sort, posts, tags)
-  // console.log(posts)
+
   const useSortedAndSearchedPosts = useMemo(() => {
     return [...sortedPosts].filter((post) => {
       return (

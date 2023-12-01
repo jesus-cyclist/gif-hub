@@ -1,14 +1,14 @@
+import serverService from '@api/ServerService'
+import CustomButton from '@components/UI/CustomButton/CustomButton'
+import CustomInput from '@components/UI/CustomInput/CustomInput'
+import Hint from '@components/UI/Hint/Hint'
+import { EMAIL, NAME, PASSWORD } from '@constants/input'
+import { useFetching } from '@hooks/useFetching'
+import useForm from '@hooks/useForm'
+import { selectUser } from '@services/selectors'
 import React, { useEffect, useState } from 'react'
-import styles from './ProfileData.module.css'
-import CustomInput from '../../../components/UI/CustomInput/CustomInput'
-import useForm from '../../../hooks/useForm'
-import { EMAIL, NAME, PASSWORD } from '../../../constants/input'
-import CustomButton from '../../../components/UI/CustomButton/CustomButton'
 import { useSelector } from 'react-redux'
-import { selectUser } from '../../../services/selectors'
-import Hint from '../../../components/UI/Hint/Hint'
-import { useFetching } from '../../../hooks/useFetching'
-import serverService from '../../../API/ServerService'
+import styles from './ProfileData.module.css'
 
 const ProfileData = () => {
   const user = useSelector(selectUser)
@@ -54,7 +54,7 @@ const ProfileData = () => {
       values[EMAIL],
       values[PASSWORD],
       values[NAME],
-      user.userData.userId
+      user.userData.id
     )
   }
 

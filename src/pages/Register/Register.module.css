@@ -18,7 +18,8 @@
 }
 
 .email,
-.password {
+.password,
+.name {
   padding: 10px 10px;
   margin-bottom: 20px;
 }

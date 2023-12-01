@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
-import { profileDataPath } from '../../constants/path'
+import { profileDataPath } from '@constants/path'
 import styles from './Settings.module.css'
 
 const Settings = () => {

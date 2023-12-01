@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Transition } from 'react-transition-group'
-import { useClickOutSide } from '../../../hooks/useClickOutside'
-import { selectTheme } from '../../../services/selectors'
-import { getBackgroundColorClass } from '../../../utils/theme'
+import { useClickOutSide } from '@hooks/useClickOutside'
+import { selectTheme } from '@services/selectors'
+import { getBackgroundColorClass } from '@utils/theme'
 import CustomButton from '../CustomButton/CustomButton'
 import styles from './DropDown.module.css'
 

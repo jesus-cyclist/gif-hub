@@ -1,10 +1,10 @@
 import React, { useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Transition } from 'react-transition-group'
-import { ReactComponent as Angle } from '../../../assets/svg/angle.svg'
-import { useClickOutSide } from '../../../hooks/useClickOutside'
-import { selectTheme } from '../../../services/selectors'
-import { getBackgroundColorClass, getBorderClass } from '../../../utils/theme'
+import { ReactComponent as Angle } from '@assets/svg/angle.svg'
+import { useClickOutSide } from '@hooks/useClickOutside'
+import { selectTheme } from '@services/selectors'
+import { getBackgroundColorClass, getBorderClass } from '@utils/theme'
 import styles from './CustomSelect.module.css'
 
 const CustomSelect = (props) => {

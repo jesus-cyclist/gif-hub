@@ -7,20 +7,22 @@ import {
   loginPagePath,
   postPath,
   profileDataPath,
+  registerPagePath,
   settingsPath,
-} from '../../constants/path'
-import CreateNewPost from '../../pages/CreateNewPost/CreateNewPost'
-import Home from '../../pages/Home/Home'
-import Login from '../../pages/Login/Login'
-import PostDetail from '../../pages/PostDetail/PostDetail'
-import { selectTheme } from '../../services/selectors'
+} from '@constants/path'
+import CreateNewPost from '@pages/CreateNewPost/CreateNewPost'
+import Home from '@pages/Home/Home'
+import Login from '@pages/Login/Login'
+import PostDetail from '@pages/PostDetail/PostDetail'
+import { selectTheme } from '@services/selectors'
 import Header from '../Header/Header'
 import Modal from '../Modal/Modal'
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import styles from './App.module.css'
-import { getBackgroundColorClass, getColorClass } from '../../utils/theme'
-import Settings from '../../pages/Settings/Settings'
-import ProfileData from '../../pages/Settings/ProfileData/ProfileData'
+import { getBackgroundColorClass, getColorClass } from '@utils/theme'
+import Settings from '@pages/Settings/Settings'
+import ProfileData from '@pages/Settings/ProfileData/ProfileData'
+import Register from '@pages/Register/Register'
 
 const App = () => {
   const isDarkModeActive = useSelector(selectTheme)
@@ -63,6 +65,12 @@ const App = () => {
             path={loginPagePath}
             element={
               <ProtectedRoute isAuthOnly={false} component={<Login />} />
+            }
+          />
+          <Route
+            path={registerPagePath}
+            element={
+              <ProtectedRoute isAuthOnly={false} component={<Register />} />
             }
           />
         </Routes>

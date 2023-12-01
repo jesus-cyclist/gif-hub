@@ -1,8 +1,8 @@
 import React, { useRef } from 'react'
-import styles from './CustomInput.module.css'
-import { ReactComponent as DeleteValue } from '../../../assets/svg/close-input.svg'
 import { useSelector } from 'react-redux'
-import { getBackgroundColorClass, getBorderClass } from '../../../utils/theme'
+import { ReactComponent as DeleteValue } from '@assets/svg/close-input.svg'
+import { getBorderClass } from '@utils/theme'
+import styles from './CustomInput.module.css'
 
 const CustomInput = (props) => {
   const {
@@ -13,6 +13,7 @@ const CustomInput = (props) => {
     name,
     disabled = false,
     deleteValue,
+    dataTestId,
   } = props
   const inputRef = useRef(null)
   const { isDarkModeActive } = useSelector((store) => store.rootReducer.theme)
@@ -34,6 +35,7 @@ const CustomInput = (props) => {
         required
         disabled={disabled}
         style={{ border: getBorderClass(isDarkModeActive) }}
+        data-test-id={dataTestId}
       ></input>
       <span
         className={
@@ -41,7 +43,6 @@ const CustomInput = (props) => {
             ? `${styles.inputPlaceholderActive} ${styles.inputPlaceholder}`
             : styles.inputPlaceholder
         }
-        style={{ backgroundColor: getBackgroundColorClass(isDarkModeActive) }}
         onClick={handleClick}
       >
         {placeholder}

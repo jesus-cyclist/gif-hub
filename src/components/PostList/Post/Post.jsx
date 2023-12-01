@@ -1,47 +1,46 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { RotatingLines } from 'react-loader-spinner'
-import { useDispatch, useSelector } from 'react-redux'
-import { NavLink, useLocation } from 'react-router-dom'
-import { Transition } from 'react-transition-group'
-import serverService from '../../../API/ServerService'
-import { ReactComponent as ArrowLeft } from '../../../assets/svg/arrow-left-o.svg'
-import { ReactComponent as ArrowRight } from '../../../assets/svg/arrow-right-o.svg'
-import { ReactComponent as FullScreenButton } from '../../../assets/svg/more-o.svg'
-import { ReactComponent as Trash } from '../../../assets/svg/trash.svg'
-import { postPath } from '../../../constants/path'
-import { useFetching } from '../../../hooks/useFetching'
-import {
-  addFilterTag,
-  deleteFilterTag,
-} from '../../../services/reducers/filterTags'
-import { deletePost } from '../../../services/reducers/user'
-import { selectTheme, selectUser } from '../../../services/selectors'
+import serverService from '@api/ServerService'
+import { ReactComponent as ArrowLeft } from '@assets/svg/arrow-left-o.svg'
+import { ReactComponent as ArrowRight } from '@assets/svg/arrow-right-o.svg'
+import { ReactComponent as FullScreenButton } from '@assets/svg/more-o.svg'
+import { ReactComponent as Trash } from '@assets/svg/trash.svg'
+import { postPath } from '@constants/path'
+import { useFetching } from '@hooks/useFetching'
+import { addFilterTag, deleteFilterTag } from '@services/reducers/filterTags'
+import { deletePost } from '@services/reducers/user'
+import { selectTheme, selectUser } from '@services/selectors'
 import {
   getBackgroundColorClass,
   getBorderClass,
   getColorClass,
-} from '../../../utils/theme'
+} from '@utils/theme'
+import React, { useEffect, useRef, useState } from 'react'
+import { useDrag, useDrop } from 'react-dnd'
+import { RotatingLines } from 'react-loader-spinner'
+import { useDispatch, useSelector } from 'react-redux'
+import { NavLink, useLocation } from 'react-router-dom'
+import { Transition } from 'react-transition-group'
 import CustomButton from '../../UI/CustomButton/CustomButton'
 import FormattedDate from '../../UI/FormattedDate/FormattedDate'
 import HashPanel from '../../UI/HashPanel/HashPanel'
 import styles from './Post.module.css'
 
 const Post = (props) => {
+  const { postData, moveCard, index } = props
+  const { gifs, title, _id, createdAt, hashtags } = postData
+
   const user = useSelector(selectUser)
   const isDarkModeActive = useSelector(selectTheme)
   const [isComponentMounted, setIscomponentMounted] = useState(false)
-  const transitionRef = useRef(null)
   const [srcError, setSrcError] = useState(false)
-  const { postData } = props
-  const { gifs, title, _id, createdAt, hashtags } = postData
   const location = useLocation()
   const dispatch = useDispatch()
   const [indexOfGif, setIndexOfGif] = useState(0)
   const [fetchDeletePost] = useFetching(async (postName, userId) => {
     await serverService
       .deletePost(postName, userId)
-      .then((res) => dispatch(deletePost(res)))
+      .then((res) => dispatch(deletePost(res.data.success)))
   })
+  const postRef = useRef(null)
 
   useEffect(() => {
     setIscomponentMounted(true)
@@ -55,7 +54,7 @@ const Post = (props) => {
   }
 
   const handleDeletePost = () => {
-    fetchDeletePost(user.userId, _id)
+    fetchDeletePost(user.userData.id, _id)
   }
 
   const handleClickOnTag = (tag) => {
@@ -66,13 +65,51 @@ const Post = (props) => {
     dispatch(deleteFilterTag(tag))
   }
 
+  //DND
+  const [{ handlerId }, dropRef] = useDrop({
+    accept: 'post',
+    collect(monitor) {
+      return {
+        handlerId: monitor.getHandlerId(),
+      }
+    },
+    hover(item, monitor) {
+      if (!postRef.current) {
+        return
+      }
+      const dragIndex = item.index
+      const hoverIndex = index
+
+      if (dragIndex === hoverIndex) {
+        return
+      }
+
+      moveCard(dragIndex, hoverIndex)
+
+      item.index = hoverIndex
+    },
+  })
+
+  const [{ isDragging }, dragRef] = useDrag({
+    type: 'post',
+    item: () => {
+      return { _id, index }
+    },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  })
+
+  dropRef(dragRef(postRef))
+
   return (
-    <Transition timeout={300} nodeRef={transitionRef} in={isComponentMounted}>
+    <Transition timeout={300} nodeRef={postRef} in={isComponentMounted}>
       {(state) => (
         <div
           className={`${styles.post} ${styles[state]}`}
-          ref={transitionRef}
+          ref={postRef}
           style={{ border: `${getBorderClass(isDarkModeActive)}` }}
+          data-test-id={'posts'}
         >
           <div className={styles.gifContainer}>
             {srcError || !gifs[indexOfGif] ? (

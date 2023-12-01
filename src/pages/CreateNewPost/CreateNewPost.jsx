@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import serverService from '../../API/ServerService'
-import CustomButton from '../../components/UI/CustomButton/CustomButton'
-import CustomInput from '../../components/UI/CustomInput/CustomInput'
-import Hint from '../../components/UI/Hint/Hint'
-import { CREATE_POST } from '../../constants/post'
-import { useFetching } from '../../hooks/useFetching'
-import { addNewPost } from '../../services/reducers/user'
-import { selectUser } from '../../services/selectors'
+import serverService from '@api/ServerService'
+import CustomButton from '@components/UI/CustomButton/CustomButton'
+import CustomInput from '@components/UI/CustomInput/CustomInput'
+import Hint from '@components/UI/Hint/Hint'
+import { CREATE_POST } from '@constants/post'
+import { useFetching } from '@hooks/useFetching'
+import { addNewPost } from '@services/reducers/user'
+import { selectUser } from '@services/selectors'
 import styles from './CreateNewPost.module.css'
 
 const CreateNewPost = () => {
@@ -16,11 +15,10 @@ const CreateNewPost = () => {
   const [hintValue, setHintValue] = useState('')
 
   const dispatch = useDispatch()
-  const navigate = useNavigate()
   const [fetchAddNewPost] = useFetching(async (postName, userId) => {
     await serverService
       .addPost(postName, userId)
-      .then((res) => dispatch(addNewPost(res)))
+      .then((res) => dispatch(addNewPost(res.data.response)))
   })
   const [collectonName, setCollectonName] = useState('')
 
@@ -36,7 +34,8 @@ const CreateNewPost = () => {
       setHintValue('This field are empty')
       return
     }
-    collectonName && fetchAddNewPost(collectonName, user.userId)
+
+    collectonName && fetchAddNewPost(collectonName, user.userData.id)
   }
 
   return (

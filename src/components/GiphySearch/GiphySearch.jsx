@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import GiphyService from '../../../API/GiphyService'
-import { SEARCH } from '../../../constants/input'
-import {
-  SEARCH_SELECT_FIELD,
-  TREND_SELECT_FIELD,
-} from '../../../constants/selectField'
-import { useFetching } from '../../../hooks/useFetching'
-import { usePagintaion } from '../../../hooks/usePagintaion'
-import { getTotalPageCount } from '../../../utils/pages'
-import CustomButton from '../../UI/CustomButton/CustomButton'
-import CustomInput from '../../UI/CustomInput/CustomInput'
-import CustomSelect from '../../UI/CustomSelect/CustomSelect'
-import Pagination from '../../UI/Pagination/Pagination'
-import GiphyGrid from '../GiphyGrid/GiphyGrid'
+import GiphyService from '@api/GiphyService'
+import { SEARCH } from '@constants/input'
+import { SEARCH_SELECT_FIELD, TREND_SELECT_FIELD } from '@constants/selectField'
+import { useFetching } from '@hooks/useFetching'
+import { usePagintaion } from '@hooks/usePagintaion'
+import { getTotalPageCount } from '@utils/pages'
+import CustomButton from '../UI/CustomButton/CustomButton'
+import CustomInput from '../UI/CustomInput/CustomInput'
+import CustomSelect from '../UI/CustomSelect/CustomSelect'
+import Pagination from '../UI/Pagination/Pagination'
+import GiphyGrid from './GiphyGrid/GiphyGrid'
 import styles from './GiphySearch.module.css'
 
 const options = [TREND_SELECT_FIELD, SEARCH_SELECT_FIELD]

@@ -1,8 +1,8 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { ReactComponent as Moon } from '../../../assets/svg/moon.svg'
-import { ReactComponent as Sun } from '../../../assets/svg/sun.svg'
-import { changeTheme } from '../../../services/reducers/theme'
+import { ReactComponent as Moon } from '@assets/svg/moon.svg'
+import { ReactComponent as Sun } from '@assets/svg/sun.svg'
+import { changeTheme } from '@services/reducers/theme'
 import styles from './SwitchTheme.module.css'
 
 const SwitchTheme = () => {

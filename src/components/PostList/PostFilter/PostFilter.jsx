@@ -1,8 +1,8 @@
 import React from 'react'
-import CustomSelect from '../../UI/CustomSelect/CustomSelect'
+import { ReactComponent as Delete } from '@assets/svg/plus.svg'
 import CustomInput from '../../UI/CustomInput/CustomInput'
+import CustomSelect from '../../UI/CustomSelect/CustomSelect'
 import styles from './PostFilter.module.css'
-import { ReactComponent as Delete } from '../../../assets/svg/plus.svg'
 
 const PostFilter = ({ options, filter, setFilter, clickOnFilterTag }) => {
   return (
@@ -14,6 +14,7 @@ const PostFilter = ({ options, filter, setFilter, clickOnFilterTag }) => {
             value={filter.query}
             onChange={(e) => setFilter({ ...filter, query: e.target.value })}
             deleteValue={() => setFilter({ ...filter, query: '' })}
+            dataTestId={'input-search'}
           />
         </div>
         <div className={styles.select}>

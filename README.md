@@ -2,6 +2,8 @@
 
 GIFhub is a GIF management application built with React and JavaScript. The project utilizes Redux, Redux Toolkit, and React Transition Group for efficient state management and smooth animations.
 
+![]([https://github.com/Your_Repository_Name/Your_GIF_Name.gif](https://github.com/jesyscyclist/GifHub/blob/main/example.gif))
+
 ## Key Features
 
 - User-Friendly Interface: Enjoy a clean and intuitive interface for easy organization and enjoyment of GIFs.

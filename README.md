@@ -22,17 +22,13 @@ GIFhub is a GIF management application built with React and JavaScript. The proj
 
 To start the web application, use the script:
 
-```
-bash
-Copy code
+```bash
 npm run start-app
 ```
 
 You can also run the server and the application separately:
 
-```
-bash
-Copy code
+```bash
 npm run start-server
 npm start
 ```
